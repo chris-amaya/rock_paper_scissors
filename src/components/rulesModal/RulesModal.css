@@ -1,0 +1,35 @@
+.rulesModal-container {
+    background: #fff;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    border-radius: 10px;
+}
+
+.rulesModal-container div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.rulesModal-container button {
+    background: transparent;
+    border: none;
+}
+
+.rulesModal-container h2 {
+    color: hsl(229, 25%, 31%);
+}
+
+.rulesModal-container button:hover {
+    cursor: pointer;
+}
+
+
+.rulesModal-container div:last-child {
+    display: flex;
+    justify-content: center;
+}
