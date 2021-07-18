@@ -1,8 +1,9 @@
 import './ScoreBoard.css'
 import {ReactComponent as ScoreBoardSVG} from '../../assets/img/logo.svg';
+import { useEffect, useState } from 'react';
 
-const ScoreBoard = () => {
-
+const ScoreBoard = ({score}) => {
+    
     return (
         <div>
             <div className="scoreBoard">
@@ -12,7 +13,7 @@ const ScoreBoard = () => {
 
                 <div className="score">
                     <h2>SCORE</h2>
-                    <p>12</p>
+                    <p>{score}</p>
                 </div>
             </div>
         </div>

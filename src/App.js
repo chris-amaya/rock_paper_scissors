@@ -9,15 +9,16 @@ import UserSelection from './components/userSelection/UserSelection';
 function App() {
 
   const [rulesModal, setRulesModal] = useState(false);
-  const [userSelection, setUserSelection] = useState()
+  const [userSelection, setUserSelection] = useState();
+  const [score, setScore] = useState(0);
 
   const toggleRulesDialog = () => setRulesModal(!rulesModal);
 
   return (
     <div className="App">
-      <ScoreBoard style={{"margin-top": '10px'}} />
-      <Battle userSelection={userSelection} />
-      {/* <UserSelection setUserSelection={setUserSelection} /> */}
+      <ScoreBoard score={score}  style={{"margin-top": '10px'}} />
+      {userSelection && <Battle userSelection={userSelection} score={score} setScore={setScore}/>}
+      {!userSelection && <UserSelection setUserSelection={setUserSelection} />}
       <RulesModal on={rulesModal} setRulesModal={toggleRulesDialog} />
       <RulesButton toggleRulesDialog={toggleRulesDialog} />
     </div>
