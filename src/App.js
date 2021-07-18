@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import './App.css';
-import Index from './components/Index';
+import Battle from './components/battle/Battle';
 import RulesButton from './components/rulesButton/RulesButton'
 import RulesModal from './components/rulesModal/RulesModal';
-import Selection from './components/selection/Selection';
+import ScoreBoard from './components/scoreBoard/ScoreBoard';
+import UserSelection from './components/userSelection/UserSelection';
 
 function App() {
 
@@ -14,8 +15,9 @@ function App() {
 
   return (
     <div className="App">
-      <Index />
-      <Selection setUserSelection={setUserSelection} />
+      <ScoreBoard style={{"margin-top": '10px'}} />
+      <Battle userSelection={userSelection} />
+      {/* <UserSelection setUserSelection={setUserSelection} /> */}
       <RulesModal on={rulesModal} setRulesModal={toggleRulesDialog} />
       <RulesButton toggleRulesDialog={toggleRulesDialog} />
     </div>

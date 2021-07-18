@@ -1,0 +1,125 @@
+.battle-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 150px;
+}
+
+.user-picked, .adversary-picked {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.battle-container h2 {
+    color: #fff;
+}
+
+.battle-container div .option {
+    margin-top: 20px;
+}
+
+.option {
+    background: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+}
+
+.option.option-waiting {
+    width: 100px;
+    height: 100px;
+    background:  rgba(0,0,0, .15)
+}
+
+.option:hover {
+    cursor: pointer;
+}
+
+.winner {
+    width: 160px;
+    height: 160%;
+    position: absolute;
+    background: rgba(255, 255, 255, .08);
+    z-index: -200;
+    border-radius: 50%;
+}
+
+.winner::after {
+    content: '';
+    width: 190px;
+    height: 190px;
+    position: absolute;
+    background: rgba(255, 255, 255, .05);
+    left: -15px;
+    top: -15px;
+    border-radius: 50%;
+}
+
+.winner::before {
+    content: '';
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    background: rgba(255, 255, 255, .02);
+    left: -30px;
+    top: -30px;
+    border-radius: 50%;
+}
+
+.option .paper::after {
+    content: '';
+    background: radial-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.option .rock::after {
+    content: '';
+    background: radial-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.option .scissors::after {
+    content: '';
+    background: radial-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.winner-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.winner-section button {
+    background: rgb(255, 255, 255);
+    color: rgb(220, 0, 0);
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 10px;
+}

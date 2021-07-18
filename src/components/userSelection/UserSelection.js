@@ -4,7 +4,7 @@ import { ReactComponent as PaperSVG } from '../../assets/img/icon-paper.svg';
 import { ReactComponent as RockSVG } from '../../assets/img/icon-rock.svg';
 import { ReactComponent as ScissorsSVG } from '../../assets/img/icon-scissors.svg';
 
-const Selection = ({setUserSelection}) => {
+const UserSelection = ({setUserSelection}) => {
 
     return (
         <div className="selection-container">
@@ -27,4 +27,4 @@ const Selection = ({setUserSelection}) => {
     )
 }
 
-export default Selection;
+export default UserSelection;
