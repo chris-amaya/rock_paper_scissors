@@ -13,11 +13,14 @@ function App() {
   const [score, setScore] = useState(0);
 
   const toggleRulesDialog = () => setRulesModal(!rulesModal);
+  const resetGame = () => {
+    setUserSelection();
+  }
 
   return (
     <div className="App">
       <ScoreBoard score={score}  style={{"margin-top": '10px'}} />
-      {userSelection && <Battle userSelection={userSelection} score={score} setScore={setScore}/>}
+      {userSelection && <Battle userSelection={userSelection} score={score} setScore={setScore} resetGame={resetGame}/>}
       {!userSelection && <UserSelection setUserSelection={setUserSelection} />}
       <RulesModal on={rulesModal} setRulesModal={toggleRulesDialog} />
       <RulesButton toggleRulesDialog={toggleRulesDialog} />

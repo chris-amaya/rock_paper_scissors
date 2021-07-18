@@ -2,7 +2,7 @@ import { ReactComponent as PaperSVG } from '../assets/img/icon-paper.svg';
 import { ReactComponent as RockSVG } from '../assets/img/icon-rock.svg';
 import { ReactComponent as ScissorsSVG } from '../assets/img/icon-scissors.svg';
 
-const Selection = ({selected}) => {
+const Selection = ({selected, winner}) => {
 
     const Option = ({option}) => {
         return (
@@ -12,6 +12,8 @@ const Selection = ({selected}) => {
                     {option === 'paper' && <PaperSVG />}
                     {option === 'scissors' && <ScissorsSVG />}
                 </div>
+
+                { winner && <div className="winner"></div> }
             </div>
         )
     }

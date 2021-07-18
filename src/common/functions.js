@@ -8,21 +8,15 @@ function mod(a, b) {
 }
 
 function compare(choice1, choice2) {
-
     if(!choice1 || !choice2) {
         throw new Error('No values given');
     }
 
     const choices = ["rock", "paper", "scissors"];
-
-    // debugger
-
-    // console.log(x, y);
-    
     const x = choices.indexOf(choice1);
     const y = choices.indexOf(choice2);
     if (x === y) {
-        return "Tie";
+        return "TIE";
     }
     if (mod((x - y), choices.length) < choices.length / 2) {
         return 'USER_WINS';

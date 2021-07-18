@@ -3,7 +3,7 @@ import Selection from '../../common/Selection';
 import { useEffect, useState } from 'react';
 import { compare, getRandomInt } from '../../common/functions';
 
-const Battle = ({userSelection, score, setScore}) => {
+const Battle = ({userSelection, score, setScore, resetGame}) => {
 
     const getComputedSelection = () => {
         const options = ['rock', 'paper', 'scissors'];
@@ -12,9 +12,12 @@ const Battle = ({userSelection, score, setScore}) => {
 
     const [computerSelection, setComputerSelection] = useState();
     const [winner, setWinner] = useState();
+    const [winnerText, setWinnerText] = useState();
 
     useEffect(() => {
-        setComputerSelection(getComputedSelection());
+        setTimeout(() => {
+            setComputerSelection(getComputedSelection());
+        }, 3000);
     }, [userSelection])
     
     useEffect(() => {
@@ -25,11 +28,17 @@ const Battle = ({userSelection, score, setScore}) => {
 
     useEffect(() => {
         if(winner === 'USER_WINS') {
-            setScore(score + 1)
+            setScore(score + 1);
+            setWinnerText('YOU WIN');
         }
         
         if(winner === 'COMPUTER_WINS') {
             setScore(score - 1);
+            setWinnerText('YOU LOSE');
+        }
+
+        if(winner === 'TIE') {
+            setWinnerText('TIE')
         }
     }, [winner])
 
@@ -39,12 +48,12 @@ const Battle = ({userSelection, score, setScore}) => {
                 <div>
                     <h2>You Picked</h2>
                 </div>
-                <Selection selected={userSelection} />
+                <Selection selected={userSelection} winner={winner === 'USER_WINS' ? true : false} />
             </div>
             <div className="winner-section">
-                <h2>YOU WIN</h2>
+                <h2>{winnerText}</h2>
                 <div>
-                    <button>PLAY AGAIN</button>
+                    <button onClick={resetGame}>PLAY AGAIN</button>
                 </div>
             </div>
             <div className="adversary-picked">
@@ -52,7 +61,7 @@ const Battle = ({userSelection, score, setScore}) => {
                     <h2>The House Picked</h2>
                 </div>
                 { !computerSelection && <div className="option option-waiting" ></div>}
-                { computerSelection && <Selection selected={computerSelection} />}
+                { computerSelection && <Selection selected={computerSelection} winner={winner === 'COMPUTER_WINS' ? true : false} />}
             </div>
         </div>
     )
