@@ -4,27 +4,35 @@ import { ReactComponent as ScissorsSVG } from '../assets/img/icon-scissors.svg';
 
 const Selection = ({selected}) => {
 
-    const GetSVG = ({option}) => {
-        switch(option) {
-            case 'rock': 
-                return <RockSVG />
+    // const GetSVG = ({option}) => {
+
+    //     return 
+    //     option === 'rock' ? <RockSVG />
+    //         ? option === 'paper' : <PaperSVG />
+    //         ? option === 'scissors' : <ScissorsSVG />
+
+    //     // switch(option) {
+    //     //     case 'rock': 
+    //     //         return <RockSVG />
             
-            case 'paper':
-                return <PaperSVG />
+    //     //     case 'paper':
+    //     //         return <PaperSVG />
 
-            case 'scissors':
-                return <ScissorsSVG />
+    //     //     case 'scissors':
+    //     //         return <ScissorsSVG />
 
-            default:
-                return null;
-        }
-    }
+    //     //     default:
+    //     //         return null;
+    //     // }
+    // }
 
     const Option = ({option}) => {
         return (
             <div className="option">
                 <div className={option}>
-                    <GetSVG option={option} />
+                    {option === 'rock' && <RockSVG />}
+                    {option === 'paper' && <PaperSVG />}
+                    {option === 'scissors' && <ScissorsSVG />}
                 </div>
             </div>
         )

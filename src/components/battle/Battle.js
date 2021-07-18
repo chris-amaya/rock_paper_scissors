@@ -10,7 +10,7 @@ const Battle = ({userSelection}) => {
                 <div>
                     <h2>You Picked</h2>
                 </div>
-                <Selection selected={'rock'} />
+                <Selection selected={'paper'} />
             </div>
             <div className="winner-section">
                 <h2>YOU WIN</h2>
