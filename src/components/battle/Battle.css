@@ -108,6 +108,30 @@
     border-radius: 50%;
 }
 
+.option .lizard::after {
+    content: '';
+    background: radial-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.option .spock::after {
+    content: '';
+    background: radial-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
 .winner-section {
     display: flex;
     justify-content: center;

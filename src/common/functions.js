@@ -7,12 +7,15 @@ function mod(a, b) {
     return (c < 0) ? c + b : c
 }
 
-function compare(choice1, choice2) {
+function compare(choice1, choice2, option = 'default') {
     if(!choice1 || !choice2) {
         throw new Error('No values given');
     }
 
-    const choices = ["rock", "paper", "scissors"];
+    const choices = option === 'default' 
+        ? ["rock", "paper", "scissors"] 
+        : ["rock", "spock", "paper", "lizard", "scissors"];
+
     const x = choices.indexOf(choice1);
     const y = choices.indexOf(choice2);
     if (x === y) {

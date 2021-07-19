@@ -1,0 +1,45 @@
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%))
+}
+
+.menu-container h2 {
+    color: #fff;
+    text-align: center;
+}
+
+.menu-container .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu-container .container > div {
+    width: 100%;
+}
+
+.menu-container .container .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.buttons button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    border: 1px solid rgb(218, 221, 39);
+    padding: 10px 30px;
+    width: 25%;
+}
+
+.buttons button:hover {
+    cursor: pointer;
+}

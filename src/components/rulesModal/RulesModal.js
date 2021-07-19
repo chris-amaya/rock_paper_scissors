@@ -1,8 +1,9 @@
 import './RulesModal.css';
 import { ReactComponent as CloseSVG } from '../../assets/img/icon-close.svg';
 import { ReactComponent as RulesSVG } from '../../assets/img/image-rules.svg';
+import { ReactComponent as BonusRulesSVG } from '../../assets/img/image-rules-bonus.svg';
 
-const RulesModal = ({on, setRulesModal}) => {
+const RulesModal = ({on, setRulesModal, gameType}) => {
     
     const component = 
     <div className="rulesModal-container">
@@ -17,7 +18,7 @@ const RulesModal = ({on, setRulesModal}) => {
         </div>
 
         <div>
-            <RulesSVG />
+            {gameType === 'default' ? <RulesSVG /> : <BonusRulesSVG />}
         </div>
     </div>
 

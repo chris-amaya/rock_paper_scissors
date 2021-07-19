@@ -3,11 +3,11 @@ import Selection from '../../common/Selection';
 import { useEffect, useState } from 'react';
 import { compare, getRandomInt } from '../../common/functions';
 
-const Battle = ({userSelection, score, setScore, resetGame}) => {
+const Battle = ({userSelection, score, setScore, resetGame, gameType}) => {
 
     const getComputedSelection = () => {
-        const options = ['rock', 'paper', 'scissors'];
-        return options[getRandomInt(0, 3)];
+        const options = ['rock', 'paper', 'scissors', 'spock', 'lizard'];
+        return options[getRandomInt(0, gameType === 'default' ? 3 : 5)];
     }
 
     const [computerSelection, setComputerSelection] = useState();
@@ -33,7 +33,7 @@ const Battle = ({userSelection, score, setScore, resetGame}) => {
     
     useEffect(() => {
         if(userSelection && computerSelection) {
-            setWinner(compare(userSelection, computerSelection));
+            setWinner(compare(userSelection, computerSelection, gameType));
         }
     }, [userSelection, computerSelection])
 
