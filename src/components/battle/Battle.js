@@ -14,6 +14,17 @@ const Battle = ({userSelection, score, setScore, resetGame}) => {
     const [winner, setWinner] = useState();
     const [winnerText, setWinnerText] = useState();
 
+    const WinnerSection = ({winnerText, resetGame}) => {
+        return (
+            <div className="winner-section">
+                <h2>{winnerText}</h2>
+                <div>
+                    <button onClick={resetGame}>PLAY AGAIN</button>
+                </div>
+            </div>
+        )
+    }
+
     useEffect(() => {
         setTimeout(() => {
             setComputerSelection(getComputedSelection());
@@ -50,15 +61,10 @@ const Battle = ({userSelection, score, setScore, resetGame}) => {
                 </div>
                 <Selection selected={userSelection} winner={winner === 'USER_WINS' ? true : false} />
             </div>
-            <div className="winner-section">
-                <h2>{winnerText}</h2>
-                <div>
-                    <button onClick={resetGame}>PLAY AGAIN</button>
-                </div>
-            </div>
+            {winner && <WinnerSection winnerText={winnerText} resetGame={resetGame} />}
             <div className="adversary-picked">
                 <div>
-                    <h2>The House Picked</h2>
+                    <h2>{ computerSelection ? 'The House Picked' : 'House is Picking...'}</h2>
                 </div>
                 { !computerSelection && <div className="option option-waiting" ></div>}
                 { computerSelection && <Selection selected={computerSelection} winner={winner === 'COMPUTER_WINS' ? true : false} />}

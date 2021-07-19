@@ -1,12 +1,11 @@
 import './ScoreBoard.css'
 import {ReactComponent as ScoreBoardSVG} from '../../assets/img/logo.svg';
-import { useEffect, useState } from 'react';
 
 const ScoreBoard = ({score}) => {
     
     return (
-        <div>
-            <div className="scoreBoard">
+        <div className="scoreBoard">
+            <div>
                 <div>
                     <ScoreBoardSVG />
                 </div>

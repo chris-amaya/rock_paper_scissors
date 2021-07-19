@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App container">
       <ScoreBoard score={score}  style={{"margin-top": '10px'}} />
       {userSelection && <Battle userSelection={userSelection} score={score} setScore={setScore} resetGame={resetGame}/>}
       {!userSelection && <UserSelection setUserSelection={setUserSelection} />}
