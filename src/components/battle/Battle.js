@@ -1,5 +1,5 @@
 import './Battle.css';
-import Selection from '../../common/Selection';
+import Selection from '../../common/selection';
 import { useEffect, useState } from 'react';
 import { compare, getRandomInt } from '../../common/functions';
 
