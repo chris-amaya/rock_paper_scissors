@@ -13,6 +13,9 @@ function App() {
   const [userSelection, setUserSelection] = useState();
   const [score, setScore] = useState(0);
   const [gameType, setGameType] = useState();
+  const [modeOption, setModeOption] = useState();
+  const [userName, setUserName] = useState('');
+  const [codeRoom, setCodeRoom] = useState();
 
   const toggleRulesDialog = () => setRulesModal(!rulesModal);
   const resetGame = () => {
@@ -26,7 +29,7 @@ function App() {
       {!userSelection && <UserSelection setUserSelection={setUserSelection} gameType={gameType} />}
       <RulesModal on={rulesModal} setRulesModal={toggleRulesDialog} gameType={gameType} />
       <RulesButton toggleRulesDialog={toggleRulesDialog} />
-      {!gameType && <Menu setGameType={setGameType} />}
+      {!gameType && <Menu setGameType={setGameType} setModeOption={setModeOption} modeOption={modeOption} setUserName={setUserName} setCodeRoom={setCodeRoom} codeRoom={codeRoom} userName={userName} />}
     </div>
   );
 }
