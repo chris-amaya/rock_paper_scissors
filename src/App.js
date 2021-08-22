@@ -12,6 +12,13 @@ import ScoreBoard from './components/ScoreBoard/ScoreBoard'
 import UserSelection from './components/UserSelection/UserSelection'
 import {GameContext} from './context/GameContext'
 
+const io = require('socket.io-client')
+
+const socket = io('http://localhost:8080', {transports: ['websocket']})
+socket.on('connect', () => {
+  console.log(socket.id) // x8WIv7-mJelg7on_ALbx
+})
+
 function App() {
   const [gameMode, setGameMode] = useState()
   const [gameVariation, setGameVariation] = useState()
@@ -41,6 +48,7 @@ function App() {
     setCodeRoom,
     userName,
     setUserName,
+    socket,
   }
 
   return (

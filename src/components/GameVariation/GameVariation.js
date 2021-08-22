@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import {GameContext} from '../../context/GameContext'
 
 const GameVariation = ({setGameVariation}) => {
-  const {gameMode} = useContext(GameContext)
+  const {gameMode, userName, codeRoom, socket} = useContext(GameContext)
   const history = useHistory()
 
   function handleGameVariation(value) {
@@ -14,6 +14,11 @@ const GameVariation = ({setGameVariation}) => {
     }
 
     if (gameMode === 'MULTIPLAYER') {
+      socket.emit('create-room', {
+        userName,
+        roomCode: codeRoom,
+        variation: value,
+      })
       history.push('/multiplayer/create-room')
     }
   }
