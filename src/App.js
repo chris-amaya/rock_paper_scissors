@@ -1,5 +1,10 @@
 import {useState} from 'react'
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  useHistory,
+} from 'react-router-dom'
 import './App.css'
 import Battle from './components/Battle/Battle'
 import Menu from './components/Menu/Menu'
@@ -16,10 +21,18 @@ function App() {
   const [userName, setUserName] = useState('')
   const [codeRoom, setCodeRoom] = useState()
   const [rulesModal, setRulesModal] = useState(false)
+  const history = useHistory()
 
   const toggleRulesDialog = () => setRulesModal(!rulesModal)
   const resetGame = () => {
     setUserSelection()
+    if (gameMode === 'PC') {
+      history.push('/selection')
+    }
+
+    if (gameMode === 'MULTIPLAYER') {
+      History.push('/multiplayer/selection')
+    }
   }
 
   const valueGameContext = {

@@ -38,7 +38,7 @@ const Battle = ({userSelection, setScore, resetGame, gameVariation}) => {
     }
 
     if (winner === 'COMPUTER_WINS') {
-      setScore((score) => score + 1)
+      setScore((score) => score - 1)
       setWinnerText('YOU LOSE')
     }
 
