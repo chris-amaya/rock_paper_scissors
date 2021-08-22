@@ -6,8 +6,15 @@ import {ReactComponent as ScissorsSVG} from '../../assets/img/icon-scissors.svg'
 import {ReactComponent as PentagonSVG} from '../../assets/img/bg-pentagon.svg'
 import {ReactComponent as LizardSVG} from '../../assets/img/icon-lizard.svg'
 import {ReactComponent as SpockSVG} from '../../assets/img/icon-spock.svg'
+import {useHistory} from 'react-router-dom'
 
-const UserSelection = ({gameType, setUserSelection}) => {
+const UserSelection = ({setUserSelection, gameVariation}) => {
+  const history = useHistory()
+  function handleUserSelection(value) {
+    setUserSelection(value)
+    history.push('/battle')
+  }
+
   const RockPaperScissors = () => {
     return (
       <div className="default-container">
@@ -16,17 +23,19 @@ const UserSelection = ({gameType, setUserSelection}) => {
 
           <div
             className="option paper"
-            onClick={() => setUserSelection('paper')}>
+            onClick={() => handleUserSelection('paper')}>
             <PaperSVG />
           </div>
 
-          <div className="option rock" onClick={() => setUserSelection('rock')}>
+          <div
+            className="option rock"
+            onClick={() => handleUserSelection('rock')}>
             <RockSVG />
           </div>
 
           <div
             className="option scissors"
-            onClick={() => setUserSelection('scissors')}>
+            onClick={() => handleUserSelection('scissors')}>
             <ScissorsSVG />
           </div>
         </div>
@@ -42,29 +51,31 @@ const UserSelection = ({gameType, setUserSelection}) => {
 
           <div
             className="option paper"
-            onClick={() => setUserSelection('paper')}>
+            onClick={() => handleUserSelection('paper')}>
             <PaperSVG />
           </div>
 
           <div
             className="option scissors"
-            onClick={() => setUserSelection('scissors')}>
+            onClick={() => handleUserSelection('scissors')}>
             <ScissorsSVG />
           </div>
 
-          <div className="option rock" onClick={() => setUserSelection('rock')}>
+          <div
+            className="option rock"
+            onClick={() => handleUserSelection('rock')}>
             <RockSVG />
           </div>
 
           <div
             className="option lizard"
-            onClick={() => setUserSelection('lizard')}>
+            onClick={() => handleUserSelection('lizard')}>
             <LizardSVG />
           </div>
 
           <div
             className="option spock"
-            onClick={() => setUserSelection('spock')}>
+            onClick={() => handleUserSelection('spock')}>
             <SpockSVG />
           </div>
         </div>
@@ -72,7 +83,7 @@ const UserSelection = ({gameType, setUserSelection}) => {
     )
   }
 
-  return gameType === 'default' ? <RockPaperScissors /> : <Bonus />
+  return gameVariation === 'default' ? <RockPaperScissors /> : <Bonus />
 }
 
 export default UserSelection

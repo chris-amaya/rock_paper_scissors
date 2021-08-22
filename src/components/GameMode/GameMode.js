@@ -7,7 +7,7 @@ const GameMode = ({setGameMode}) => {
   function handleGameMode(value) {
     setGameMode(value)
     if (value === 'PC') {
-      history.push('/selection')
+      history.push('/variation')
     } else {
       history.push('/multiplayer')
     }

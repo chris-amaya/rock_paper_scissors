@@ -36,4 +36,9 @@ function getID() {
   return Math.random().toString(36).substr(2, 6)
 }
 
-export {getRandomInt, compare, getID}
+const getComputedSelection = (gameVariation) => {
+  const options = ['rock', 'paper', 'scissors', 'spock', 'lizard']
+  return options[getRandomInt(0, gameVariation === 'default' ? 3 : 5)]
+}
+
+export {getRandomInt, compare, getID, getComputedSelection}
