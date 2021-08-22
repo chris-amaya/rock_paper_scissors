@@ -7,12 +7,27 @@ import {ReactComponent as PentagonSVG} from '../../assets/img/bg-pentagon.svg'
 import {ReactComponent as LizardSVG} from '../../assets/img/icon-lizard.svg'
 import {ReactComponent as SpockSVG} from '../../assets/img/icon-spock.svg'
 import {useHistory} from 'react-router-dom'
+import {GameContext} from '../../context/GameContext'
+import {useContext} from 'react'
 
 const UserSelection = ({setUserSelection, gameVariation}) => {
+  const {socket, codeRoom, gameMode} = useContext(GameContext)
   const history = useHistory()
   function handleUserSelection(value) {
     setUserSelection(value)
-    history.push('/battle')
+
+    if (gameMode === 'PC') {
+      history.push('/battle')
+    }
+
+    if (gameMode === 'MULTIPLAYER') {
+      socket.emit('user-has-selected', {
+        roomCode: codeRoom,
+        selection: value,
+      })
+
+      history.push('/multiplayer/battle')
+    }
   }
 
   const RockPaperScissors = () => {

@@ -8,6 +8,8 @@ import {
 import './App.css'
 import Battle from './components/Battle/Battle'
 import Menu from './components/Menu/Menu'
+import BattleMultiplayer from './components/Multiplayer/BattleMultiplayer'
+import ScoreBoardMultiplayer from './components/Multiplayer/ScoreBoard/ScoreBoard.multiplayer'
 import ScoreBoard from './components/ScoreBoard/ScoreBoard'
 import UserSelection from './components/UserSelection/UserSelection'
 import {GameContext} from './context/GameContext'
@@ -28,26 +30,72 @@ function App() {
   const [score, setScore] = useState(0)
   const [rulesModal, setRulesModal] = useState(false)
   const [opponentData, setOpponentData] = useState()
+  const [winner, setWinner] = useState()
+  const [winnerText, setWinnerText] = useState()
   const history = useHistory()
 
   const toggleRulesDialog = () => setRulesModal(!rulesModal)
   const resetGame = () => {
-    setUserSelection()
     if (gameMode === 'PC') {
       history.push('/selection')
     }
 
-    if (gameMode === 'MULTIPLAYER') {
-      History.push('/multiplayer/selection')
-    }
+    setWinnerText(`waiting for ${opponentData.userName} to reset the game...`)
+    socket.emit('reset-game', {codeRoom})
   }
 
   useEffect(() => {
+    socket.on('continue-game', () => {
+      setUserSelection()
+      setWinnerText()
+      setOpponentData((data) => ({...data, selection: null}))
+      setWinner()
+      history.push('/multiplayer/selection')
+    })
+  }, [socket])
+
+  useEffect(() => {
     socket.on('start-game', ({opponent: opponentData, variation}) => {
+      console.log('setting opponent', opponentData)
       setOpponentData(opponentData)
-      console.log(opponentData)
       setGameVariation(variation)
       history.push('/multiplayer/selection')
+    })
+  }, [socket])
+
+  useEffect(() => {
+    socket.on('user-has-selected', ({selection}) => {
+      setOpponentData((data) => ({
+        ...data,
+        selection,
+      }))
+    })
+  }, [socket])
+
+  useEffect(() => {
+    socket.on('score', (users) => {
+      console.log('score received', users)
+      users.forEach((user) => {
+        if (socket.id === user.id) {
+          setScore(user.score)
+        } else {
+          setOpponentData((data) => ({...data, score: user.score}))
+        }
+      })
+    })
+  }, [socket])
+
+  useEffect(() => {
+    socket.on('winner', (winner) => {
+      console.log('winner received', winner)
+      if (socket.id === winner.id) {
+        setWinner('ME')
+        setWinnerText('YOU WIN')
+      } else {
+        console.log('setting winnner opponent', winner)
+        setWinner('OPPONENT')
+        setWinnerText(`${winner.userName} WINS`)
+      }
     })
   }, [socket])
 
@@ -59,6 +107,11 @@ function App() {
     userName,
     setUserName,
     socket,
+    opponent: opponentData,
+    winner,
+    winnerText,
+    resetGame,
+    userSelection,
   }
 
   return (
@@ -76,6 +129,25 @@ function App() {
           </Route>
           <Route path="/selection">
             <ScoreBoard score={score} gameVariation={gameVariation} />
+            <UserSelection
+              setUserSelection={setUserSelection}
+              gameVariation={gameVariation}
+            />
+          </Route>
+          <Route path="/multiplayer/battle">
+            <ScoreBoardMultiplayer
+              score={score}
+              gameVariation={gameVariation}
+              opponent={opponentData}
+            />
+            <BattleMultiplayer />
+          </Route>
+          <Route path="/multiplayer/selection">
+            <ScoreBoardMultiplayer
+              score={score}
+              gameVariation={gameVariation}
+              opponent={opponentData}
+            />
             <UserSelection
               setUserSelection={setUserSelection}
               gameVariation={gameVariation}

@@ -10,7 +10,7 @@ const JoinRoom = () => {
       return
     }
 
-    setCodeRoom(codeRoom)
+    setCodeRoom(_codeRoom)
     socket.emit('join-room', {
       roomCode: _codeRoom,
       userName,
