@@ -1,0 +1,135 @@
+.default-container, .bonus-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.default-container > div, .bonus-container > div {
+    position: relative;
+}
+
+.option {
+    background: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option:hover {
+    cursor: pointer;
+}
+
+.default-container .option.paper {
+    position: absolute;
+    left: -30px;
+    top: -30px;
+}
+
+.default-container .option.paper::after,
+.bonus-container .option.paper::after {
+    content: '';
+    background: radial-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.default-container .option.rock {
+    position: absolute;
+    right: -30px;
+    top: -30px;
+}
+
+.default-container .option.rock::after,
+.bonus-container .option.rock::after
+{
+    content: '';
+    background: radial-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.default-container .option.scissors {
+    position: absolute;
+    bottom: -10px;
+    left: 100px;
+}
+
+.default-container .option.scissors::after,
+.bonus-container .option.scissors::after {
+    content: '';
+    background: radial-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.bonus-container .option.lizard::after {
+    content: '';
+    background: radial-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.bonus-container .option.spock::after {
+    content: '';
+    background: radial-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: -13%;
+    left: -13%;
+    z-index: -100;
+    border-radius: 50%;
+}
+
+.bonus-container .option.paper {
+    position: absolute;
+    right: -35px;
+    top: 75px;
+}
+
+.bonus-container .option.scissors {
+    position: absolute;
+    top: -50px;
+    right: 120px;
+}
+
+.bonus-container .option.rock {
+    position: absolute;
+    right: 30px;
+    bottom: -50px;
+}
+
+.bonus-container .option.spock {
+    position: absolute;
+    left: -35px;
+    top: 75px;
+}
+
+.bonus-container .option.lizard {
+    position: absolute;
+    left: 30px;
+    bottom: -50px;
+}
