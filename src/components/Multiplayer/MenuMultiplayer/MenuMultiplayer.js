@@ -1,7 +1,10 @@
 import {useState} from 'react'
+import {useHistory} from 'react-router-dom'
+import {getID} from '../../../common/functions'
 
 const MenuMultiplayer = ({setRoomOptions}) => {
   const [userName, setUserName] = useState('')
+  const history = useHistory()
 
   const handlerRoomOption = (value) => {
     if (!userName) {
@@ -9,12 +12,21 @@ const MenuMultiplayer = ({setRoomOptions}) => {
 
       return
     }
-
+    const room = getID()
     setRoomOptions({
       userName: userName,
       CREATE: value === 'create' || false,
       JOIN: value === 'join' || false,
+      codeRoom: room,
     })
+
+    if (value === 'join') {
+      history.push('/multiplayer/join-room')
+    }
+
+    if (value === 'create') {
+      history.push('/variation')
+    }
   }
 
   return (

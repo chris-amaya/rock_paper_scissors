@@ -1,4 +1,23 @@
-const GameVariation = ({setGameType}) => {
+import {useContext} from 'react'
+import {useHistory} from 'react-router-dom'
+import {GameContext} from '../../context/GameContext'
+
+const GameVariation = ({setGameVariation}) => {
+  const {gameMode} = useContext(GameContext)
+  const history = useHistory()
+
+  function handleGameVariation(value) {
+    setGameVariation(value)
+
+    if (gameMode === 'PC') {
+      history.push('/selection')
+    }
+
+    if (gameMode === 'MULTIPLAYER') {
+      history.push('/multiplayer/create-room')
+    }
+  }
+
   return (
     <div>
       <div>
@@ -6,10 +25,10 @@ const GameVariation = ({setGameType}) => {
       </div>
 
       <div className="buttons">
-        <button onClick={() => setGameType('default')}>
+        <button onClick={() => handleGameVariation('default')}>
           Rock, Paper, Scissors
         </button>
-        <button onClick={() => setGameType('bonus')}>
+        <button onClick={() => handleGameVariation('bonus')}>
           Rock, Paper, Scissors, Lizard, Spock
         </button>
       </div>

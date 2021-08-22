@@ -20,7 +20,7 @@ const MainMultiplayer = ({setUserName}) => {
       <Route path="/multiplayer/join-room">
         <JoinRoom setRoomOptions={setRoomOptions} />
       </Route>
-      <Route path="/multiplayer">
+      <Route exact path="/multiplayer">
         <MenuMultiplayer
           setRoomOptions={setRoomOptions}
           setUserName={setUserName}

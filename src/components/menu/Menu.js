@@ -4,18 +4,12 @@ import GameVariation from '../GameVariation/GameVariation'
 import MainMultiplayer from '../Multiplayer/main.multiplayer'
 import './Menu.css'
 
-const Menu = ({
-  setGameType,
-  setGameMode,
-  setUserName,
-  userName,
-  modeOption,
-}) => {
+const Menu = ({setGameMode, setGameVariation}) => {
   return (
     <div className="menu-container">
       <div className="container">
         <Route path="/variation">
-          <GameVariation />
+          <GameVariation setGameVariation={setGameVariation} />
         </Route>
         <Route path="/multiplayer">
           <MainMultiplayer />
