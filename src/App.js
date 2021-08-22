@@ -13,13 +13,12 @@ import UserSelection from './components/UserSelection/UserSelection'
 import {GameContext} from './context/GameContext'
 
 function App() {
-  const [gameVariation, setGameVariation] = useState()
   const [gameMode, setGameMode] = useState()
+  const [gameVariation, setGameVariation] = useState()
+  const [codeRoom, setCodeRoom] = useState()
+  const [userName, setUserName] = useState('')
   const [userSelection, setUserSelection] = useState()
   const [score, setScore] = useState(0)
-  const [gameType, setGameType] = useState()
-  const [userName, setUserName] = useState('')
-  const [codeRoom, setCodeRoom] = useState()
   const [rulesModal, setRulesModal] = useState(false)
   const history = useHistory()
 
@@ -38,6 +37,10 @@ function App() {
   const valueGameContext = {
     gameMode,
     gameVariation,
+    codeRoom,
+    setCodeRoom,
+    userName,
+    setUserName,
   }
 
   return (

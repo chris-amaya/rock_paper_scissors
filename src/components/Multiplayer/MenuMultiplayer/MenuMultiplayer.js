@@ -1,9 +1,10 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {getID} from '../../../common/functions'
+import {GameContext} from '../../../context/GameContext'
 
-const MenuMultiplayer = ({setRoomOptions}) => {
-  const [userName, setUserName] = useState('')
+const MenuMultiplayer = ({}) => {
+  const {setCodeRoom, setUserName, userName} = useContext(GameContext)
   const history = useHistory()
 
   const handlerRoomOption = (value) => {
@@ -13,18 +14,14 @@ const MenuMultiplayer = ({setRoomOptions}) => {
       return
     }
     const room = getID()
-    setRoomOptions({
-      userName: userName,
-      CREATE: value === 'create' || false,
-      JOIN: value === 'join' || false,
-      codeRoom: room,
-    })
+    setUserName(userName)
 
     if (value === 'join') {
       history.push('/multiplayer/join-room')
     }
 
     if (value === 'create') {
+      setCodeRoom(room)
       history.push('/variation')
     }
   }
