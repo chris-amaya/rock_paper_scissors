@@ -88,6 +88,12 @@ function App() {
   useEffect(() => {
     socket.on('winner', (winner) => {
       console.log('winner received', winner)
+      if (winner === 'TIE') {
+        setWinner('NONE')
+        setWinnerText('TIE')
+        return
+      }
+
       if (socket.id === winner.id) {
         setWinner('ME')
         setWinnerText('YOU WIN')
