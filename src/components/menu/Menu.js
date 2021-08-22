@@ -1,13 +1,12 @@
-import {useState} from 'react'
+import {Route} from 'react-router-dom'
 import GameMode from '../GameMode/GameMode'
-import CreateRoom from '../Multiplayer/CreateRoom/CreateRoom'
-import JoinRoom from '../Multiplayer/JoinRoom/JoinRoom'
-import MenuMultiplayer from '../Multiplayer/MenuMultiplayer/MenuMultiplayer'
+import GameVariation from '../GameVariation/GameVariation'
+import MainMultiplayer from '../Multiplayer/main.multiplayer'
 import './Menu.css'
 
 const Menu = ({
   setGameType,
-  setModeOption,
+  setGameMode,
   setUserName,
   userName,
   modeOption,
@@ -15,11 +14,15 @@ const Menu = ({
   return (
     <div className="menu-container">
       <div className="container">
-        {!modeOption && <GameMode setModeOption={setModeOption} />}
-        {modeOption === 'PC' && <GameVariation setGameType={setGameType} />}
-        {modeOption === 'MULTIPLAYER' && (
-          <Multiplayer setUserName={setUserName} userName={userName} />
-        )}
+        <Route path="/variation">
+          <GameVariation />
+        </Route>
+        <Route path="/multiplayer">
+          <MainMultiplayer />
+        </Route>
+        <Route exact path="/">
+          <GameMode setGameMode={setGameMode} />
+        </Route>
       </div>
     </div>
   )

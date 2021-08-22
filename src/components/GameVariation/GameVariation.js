@@ -16,3 +16,5 @@ const GameVariation = ({setGameType}) => {
     </div>
   )
 }
+
+export default GameVariation

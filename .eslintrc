@@ -8,7 +8,7 @@
   },
   "rules": {
     "semi": ["error", "never"],
-    "endOfLine": "auto"
+    "endOfLine": 0
   },
   "env": {
     "browser": true

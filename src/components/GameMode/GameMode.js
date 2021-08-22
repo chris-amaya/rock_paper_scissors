@@ -1,6 +1,18 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 
-const GameMode = ({setModeOption}) => {
+const GameMode = ({setGameMode}) => {
+  const history = useHistory()
+
+  function handleGameMode(value) {
+    setGameMode(value)
+    if (value === 'PC') {
+      history.push('/selection')
+    } else {
+      history.push('/multiplayer')
+    }
+  }
+
   return (
     <div>
       <div>
@@ -8,8 +20,8 @@ const GameMode = ({setModeOption}) => {
       </div>
 
       <div className="buttons">
-        <button onClick={() => setModeOption('PC')}>PC</button>
-        <button onClick={() => setModeOption('MULTIPLAYER')}>
+        <button onClick={() => handleGameMode('PC')}>PC</button>
+        <button onClick={() => handleGameMode('MULTIPLAYER')}>
           Multiplayer
         </button>
       </div>

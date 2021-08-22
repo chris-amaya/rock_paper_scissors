@@ -1,3 +1,9 @@
+import {useState} from 'react'
+import {Route} from 'react-router-dom'
+import CreateRoom from './CreateRoom/CreateRoom'
+import JoinRoom from './JoinRoom/JoinRoom'
+import MenuMultiplayer from './MenuMultiplayer/MenuMultiplayer'
+
 const MainMultiplayer = ({setUserName}) => {
   const [roomOptions, setRoomOptions] = useState({
     userName: '',
@@ -8,16 +14,18 @@ const MainMultiplayer = ({setUserName}) => {
 
   return (
     <div className="multiplayer-menu">
-      {!roomOptions.userName && (
+      <Route path="/multiplayer/create-room">
+        <CreateRoom />
+      </Route>
+      <Route path="/multiplayer/join-room">
+        <JoinRoom setRoomOptions={setRoomOptions} />
+      </Route>
+      <Route path="/multiplayer">
         <MenuMultiplayer
           setRoomOptions={setRoomOptions}
           setUserName={setUserName}
         />
-      )}
-      {(roomOptions.JOIN === true || roomOptions.codeRoom) && (
-        <JoinRoom setRoomOptions={setRoomOptions} roomOptions={roomOptions} />
-      )}
-      {roomOptions.CREATE === true && <CreateRoom />}
+      </Route>
     </div>
   )
 }

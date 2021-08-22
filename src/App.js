@@ -1,25 +1,20 @@
 import {useState} from 'react'
-import {Route, Router, Switch} from 'react-router-dom'
+import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import './App.css'
 import Battle from './components/Battle/Battle'
 import Menu from './components/Menu/Menu'
+import MainMultiplayer from './components/Multiplayer/main.multiplayer'
 import RulesButton from './components/Rules/RulesButton'
 import RulesModal from './components/Rules/RulesModal'
 import ScoreBoard from './components/ScoreBoard/ScoreBoard'
 import UserSelection from './components/UserSelection/UserSelection'
-
-function AppWrapper() {
-  ;<Router>
-    <App />
-  </Router>
-}
 
 function App() {
   const [rulesModal, setRulesModal] = useState(false)
   const [userSelection, setUserSelection] = useState()
   const [score, setScore] = useState(0)
   const [gameType, setGameType] = useState()
-  const [modeOption, setModeOption] = useState()
+  const [gameMode, setGameMode] = useState()
   const [userName, setUserName] = useState('')
   const [codeRoom, setCodeRoom] = useState()
 
@@ -36,10 +31,18 @@ function App() {
           <UserSelection setUserSelection={setUserName} />
         </Route>
         <Route path="/">
-          <Menu setModeOption={setModeOption} setGameType={setGameType} />
+          <Menu setGameMode={setGameMode} setGameType={setGameType} />
         </Route>
       </Switch>
     </div>
+  )
+}
+
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
   )
 }
 
