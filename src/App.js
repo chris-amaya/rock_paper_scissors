@@ -10,6 +10,8 @@ import Battle from './components/Battle/Battle'
 import Menu from './components/Menu/Menu'
 import BattleMultiplayer from './components/Multiplayer/BattleMultiplayer'
 import ScoreBoardMultiplayer from './components/Multiplayer/ScoreBoard/ScoreBoard.multiplayer'
+import RulesButton from './components/Rules/RulesButton'
+import RulesModal from './components/Rules/RulesModal'
 import ScoreBoard from './components/ScoreBoard/ScoreBoard'
 import UserSelection from './components/UserSelection/UserSelection'
 import {GameContext} from './context/GameContext'
@@ -38,6 +40,7 @@ function App() {
   const resetGame = () => {
     if (gameMode === 'PC') {
       history.push('/selection')
+      return
     }
 
     setWinnerText(`waiting for ${opponentData.userName} to reset the game...`)
@@ -166,6 +169,16 @@ function App() {
             />
           </Route>
         </Switch>
+        {gameVariation && (
+          <>
+            <RulesModal
+              on={rulesModal}
+              setRulesModal={setRulesModal}
+              gameVariation={gameVariation}
+            />
+            <RulesButton toggleRulesDialog={toggleRulesDialog} />
+          </>
+        )}
       </div>
     </GameContext.Provider>
   )
