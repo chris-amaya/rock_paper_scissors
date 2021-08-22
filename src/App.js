@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {
   Route,
   BrowserRouter as Router,
@@ -27,6 +27,7 @@ function App() {
   const [userSelection, setUserSelection] = useState()
   const [score, setScore] = useState(0)
   const [rulesModal, setRulesModal] = useState(false)
+  const [opponentData, setOpponentData] = useState()
   const history = useHistory()
 
   const toggleRulesDialog = () => setRulesModal(!rulesModal)
@@ -40,6 +41,15 @@ function App() {
       History.push('/multiplayer/selection')
     }
   }
+
+  useEffect(() => {
+    socket.on('start-game', ({opponent: opponentData, variation}) => {
+      setOpponentData(opponentData)
+      console.log(opponentData)
+      setGameVariation(variation)
+      history.push('/multiplayer/selection')
+    })
+  }, [socket])
 
   const valueGameContext = {
     gameMode,

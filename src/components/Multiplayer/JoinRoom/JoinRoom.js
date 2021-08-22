@@ -1,15 +1,19 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import {GameContext} from '../../../context/GameContext'
 
-const JoinRoom = ({setRoomOptions, roomOptions}) => {
-  const [codeRoom, setCodeRoom] = useState('')
+const JoinRoom = () => {
+  const {codeRoom, setCodeRoom, userName, socket} = useContext(GameContext)
+  const [_codeRoom, _setCodeRoom] = useState('')
   const handlerJoinRoom = () => {
-    if (!codeRoom) {
+    if (!_codeRoom) {
       alert('Please, fill the code room')
       return
     }
-    setRoomOptions({
-      ...roomOptions,
-      codeRoom,
+
+    setCodeRoom(codeRoom)
+    socket.emit('join-room', {
+      roomCode: _codeRoom,
+      userName,
     })
   }
   return (
@@ -17,8 +21,8 @@ const JoinRoom = ({setRoomOptions, roomOptions}) => {
       <input
         type="text"
         placeholder="Code Room"
-        value={codeRoom}
-        onInput={(e) => setCodeRoom(e.target.value)}></input>
+        value={_codeRoom}
+        onInput={(e) => _setCodeRoom(e.target.value)}></input>
       <button onClick={handlerJoinRoom}>JOIN</button>
     </>
   )
