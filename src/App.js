@@ -18,7 +18,7 @@ import {GameContext} from './context/GameContext'
 
 const io = require('socket.io-client')
 
-const socket = io('http://localhost:8080', {transports: ['websocket']})
+const socket = io('http://localhost:6001', {transports: ['websocket']})
 socket.on('connect', () => {
   console.log(socket.id) // x8WIv7-mJelg7on_ALbx
 })
