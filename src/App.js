@@ -16,9 +16,9 @@ import ScoreBoard from './components/ScoreBoard/ScoreBoard'
 import UserSelection from './components/UserSelection/UserSelection'
 import {GameContext} from './context/GameContext'
 
-const io = require('socket.io-client')
+import io from 'socket.io-client'
 
-const socket = io('http://localhost:6001', {transports: ['websocket']})
+const socket = io(`${process.env.REACT_APP_SERVER_URL}`, {transports: ['websocket']})
 socket.on('connect', () => {
   console.log(socket.id) // x8WIv7-mJelg7on_ALbx
 })
